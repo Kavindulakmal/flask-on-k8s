@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: db-deployment
+ namespace: my-app
+spec:
+ replicas: 1
+ selector:
+  matchLabels:
+    app: db
+ template:
+  metadata:
+    labels:
+      app: db
+  spec:
+    containers:
+    - name: db
+      image: mysql:8.0
+       env:
+       - name: MYSQL_DB
+         value: mydatabase
+       - name: MYSQL_USER
+         value: user
+       - name: MYSQL_PASSWORD
+      valueFrom:
+        secretKeyRef:
+        name: db-secret
+        key: MYSQL_PASSWORD
+      volumeMounts:
+      - name: db-storage
+        mountPath: /var/lib/mysql
+    volumes:
+    - name: db-storage
+      persistentVolumeClaim:
+      claimName: db-pvc
+      
+      

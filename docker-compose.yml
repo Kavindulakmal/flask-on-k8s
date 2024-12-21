@@ -1,0 +1,16 @@
+version: '3'
+services:
+ web:
+  image: my-web-app:latest
+  ports:
+  - "5000:5000"
+  environment:
+  - DATABASE_URL=mysql://root:@db:3306/pythonsql
+  depends_on:
+  - db
+ db:
+    image: mysql:8.0
+    environment:
+      MYSQL_DB: pythonsql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: 

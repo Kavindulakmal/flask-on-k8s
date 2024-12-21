@@ -1,0 +1,23 @@
+1. Create the namespace:
+
+    kubectl apply -f namespace.yaml
+
+2. Apply the ConfigMap and Secret:
+
+    kubectl apply -f configmap.yaml
+    kubectl apply -f secret.yaml
+
+3. Create the Persistent Volume and Persistent Volume Claim:
+
+    kubectl apply -f persistent-volume.yaml
+    kubectl apply -f persistent-volume-claim.yaml
+
+4. Deploy the web application and database:
+
+    kubectl apply -f web-deployment.yaml
+    kubectl apply -f db-deployment.yaml
+
+5. Create the services:
+
+    kubectl apply -f web-service.yaml
+    kubectl apply -f db-service.yaml
